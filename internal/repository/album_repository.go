@@ -12,6 +12,7 @@ type AlbumRepository interface {
 	Update(album *models.Album) error
 	Delete(id uint) error
 	List() ([]models.Album, error)
+	GetAverageRating(albumID uint) (float64, error)
 }
 
 type gormAlbumRepository struct {
@@ -50,4 +51,18 @@ func (r *gormAlbumRepository) List() ([]models.Album, error) {
 		return nil, err
 	}
 	return albums, nil
+}
+
+func (r *gormAlbumRepository) GetAverageRating(albumID uint) (float64, error) {
+	var avg float64
+
+	err:= r.db.
+		Model(&models.Track{}).
+		Where("album_id = ?", albumID).
+		Select("COALESCE(AVG(rating), 0)").
+		Scan(&avg).Error
+
+
+	return avg, err
+
 }
