@@ -39,6 +39,7 @@ func (s *albumService) CreateAlbum(req models.AlbumCreateRequest) (*models.Album
 	album := models.Album{
 		Title: req.Title,
 		Year:  req.Year,
+		ArtistID: req.ArtistID,
 	}
 
 	if err := s.albumRepo.Create(&album); err != nil {
@@ -64,6 +65,13 @@ func (s *albumService) UpdateAlbum(id uint, req models.AlbumUpdateRequest) (*mod
 
 	if req.Year != nil {
 		album.Year = *req.Year
+	}
+
+	if req.ArtistID != nil {
+		if _, err := s.artistRepo.GetByID(*req.ArtistID); err != nil {
+			return nil , errors.New("artist not found")
+		}
+		album.ArtistID = *req.ArtistID
 	}
 
 	if err := s.albumRepo.Update(album); err != nil {
