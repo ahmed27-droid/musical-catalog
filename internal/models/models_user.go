@@ -7,8 +7,8 @@ type User struct {
 	Name      string     `json:"name" gorm:"not null;size:20;uniqueIndex"`
 	Email     string     `json:"email" gorm:"uniqueIndex;not null;size:50"`
 
-	Reviews   []Review   `json:"-" gorm:"constraint:OnDelete:CASCADE;"`
-	Playlists []Playlist `json:"-" gorm:"constraint:OnDelete:CASCADE;"`
+	Reviews   []Review   `gorm:"constraint:OnDelete:CASCADE;"`
+	Playlists []Playlist `gorm:"constraint:OnDelete:CASCADE;"`
 }
 
 type CreateUser struct {
