@@ -13,11 +13,11 @@ type User struct {
 
 type CreateUser struct {
 	Name  string `json:"name" binding:"required,min=5,max=20"`
-	Email string `json:"email" binding:"required,max=50"`
+	Email string `json:"email" binding:"required,max=50,email"`
 }
 
 type UpdateUser struct {
 	Name  *string `json:"name" binding:"min=5,max=20"`
-	Email *string `json:"email" binding:"max=50"`
+	Email *string `json:"email" binding:"max=50,email"`
 }
 

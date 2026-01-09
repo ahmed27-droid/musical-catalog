@@ -65,7 +65,7 @@ func (r *gormPlaylistRepository) DeleteTrack(playlistID uint, trackID uint) erro
 		return err
 	}
 
-	return r.db.Model(&playlist).Association("Tracks").Append(&track)
+	return r.db.Model(&playlist).Association("Tracks").Delete(&track)
 }
 
 func (r *gormPlaylistRepository) List() ([]models.Playlist, error) {
