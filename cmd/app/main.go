@@ -19,7 +19,7 @@ func main() {
 	artistRepo := repository.NewArtistRepository(db)
 	albumRepo := repository.NewAlbumRepository(db)
 
-	artistService := services.NewArtistService(artistRepo, albumRepo)
+	artistService := services.NewArtistService(artistRepo)
 	albumService := services.NewAlbumService(artistRepo, albumRepo)
 
 	artistTransport := transport.NewArtistTransport(artistService)
