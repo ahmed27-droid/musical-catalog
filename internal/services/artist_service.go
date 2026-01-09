@@ -13,26 +13,26 @@ type ArtistService interface {
 	ListArtist() ([]models.Artist, error)
 }
 
-type artistService struct{
+type artistService struct {
 	artistRepo repository.ArtistRepository
 }
 
 func NewArtistService(
-	artistRepo repository.ArtistRepository, 
-	) ArtistService{
-		return &artistService{
-			artistRepo: artistRepo, 
-		}
+	artistRepo repository.ArtistRepository,
+) ArtistService {
+	return &artistService{
+		artistRepo: artistRepo,
 	}
+}
 
-func (s *artistService) CreateArtist(req models.ArtistCreateRequest) (*models.Artist, error){
-	
+func (s *artistService) CreateArtist(req models.ArtistCreateRequest) (*models.Artist, error) {
+
 	artist := models.Artist{
 		Name: req.Name,
-		Bio: req.Bio,
+		Bio:  req.Bio,
 	}
 
-	if err := s.artistRepo.Create(&artist); err != nil{
+	if err := s.artistRepo.Create(&artist); err != nil {
 		return nil, err
 	}
 
@@ -49,21 +49,21 @@ func (s *artistService) UpdateArtist(id uint, req models.ArtistUpdateRequest) (*
 		return nil, err
 	}
 
-	if req.Name != nil{
-		artist.Name = *req.Name		
+	if req.Name != nil {
+		artist.Name = *req.Name
 	}
 
 	if req.Bio != nil {
 		artist.Bio = *req.Bio
 	}
 
-	if err := s.artistRepo.Update(artist); err != nil{
+	if err := s.artistRepo.Update(artist); err != nil {
 		return nil, err
 	}
 	return artist, nil
 }
 
-func (s *artistService) DeleteArtist(id uint) error{
+func (s *artistService) DeleteArtist(id uint) error {
 	if _, err := s.artistRepo.GetByID(id); err != nil {
 		return err
 	}
