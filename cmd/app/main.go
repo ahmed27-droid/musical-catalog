@@ -28,5 +28,6 @@ func main() {
 	router := gin.Default()
 	transport.RegisterRoutes(router, artistTransport, albumTransport)
 	router.Run(":8080")
+	//jjjjjjjj
 
 }
