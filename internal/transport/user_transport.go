@@ -13,7 +13,7 @@ type UserTransport struct {
 	service services.UserService
 }
 
-func NewUserService(service services.UserService) *UserTransport {
+func NewUserTransport(service services.UserService) *UserTransport {
 	return &UserTransport{service: service}
 }
 

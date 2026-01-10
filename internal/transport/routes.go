@@ -6,6 +6,8 @@ func RegisterRoutes(
 	router *gin.Engine,
 	artistTransport *ArtistTransport,
 	albumTransport *AlbumTransport,
+	userTransport *UserTransport,
+	playlistTransport *PlaylistTransport,
 	
 ){
 	router.GET("/artists",artistTransport.ListArtists)
@@ -23,4 +25,19 @@ func RegisterRoutes(
 	router.DELETE("/albums/:id", albumTransport.DeleteAlbum)
 	router.GET("/albums/:id/average", albumTransport.GetAlbumsAverageRating)
 
+	router.GET("/users", userTransport.List)
+	router.POST("/users", userTransport.Create)
+
+	router.GET("/users/:id", userTransport.GetByID)
+	router.PATCH("/users/:id", userTransport.Update)
+	router.DELETE("/user/:id", userTransport.Delete)
+
+	router.GET("/playlists", playlistTransport.List)
+	router.POST("/playlists", playlistTransport.Create)
+
+	router.GET("/playlists/:id", playlistTransport.GetByID)
+	router.DELETE("/playlists/:id", playlistTransport.Delete)
+
+	router.POST("/playlists/:id/tracks/:track_id", playlistTransport.AddTrack)
+	router.DELETE("/playlists/:id/tracks/:track_id", playlistTransport.DeleteTrack)
 }
