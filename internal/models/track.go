@@ -5,9 +5,10 @@ import "gorm.io/gorm"
 type Track struct {
 	gorm.Model
 	Title    string `json:"title" gorm:"not null;size:100"`
-	Duration int    `json:"duration" gorm:"not null"` 
+	Duration int    `json:"duration" gorm:"not null"`
+	Rating   int    `json:"rating" gorm:"not null"`
 
-	AlbumID uint  `json:"album_id" gorm:"not null;index"` 
+	AlbumID uint  `json:"album_id" gorm:"not null;index"`
 	Album   Album `json:"-" gorm:"foreignKey:AlbumID;constraint:OnDelete:CASCADE"`
 }
 
@@ -15,6 +16,7 @@ type CreateTrackRequest struct {
 	Title    string `json:"title" binding:"required"`
 	Duration int    `json:"duration" binding:"required"`
 	AlbumID  uint   `json:"album_id" binding:"required"`
+	Rating   int    `json:"rating" binding:"required"`
 }
 
 type UpdateTrackRequest struct {

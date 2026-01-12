@@ -32,7 +32,7 @@ func RegisterRoutes(
 
 	router.GET("/users/:id", userTransport.GetByID)
 	router.PATCH("/users/:id", userTransport.Update)
-	router.DELETE("/user/:id", userTransport.Delete)
+	router.DELETE("/users/:id", userTransport.Delete)
 
 	router.GET("/playlists", playlistTransport.List)
 	router.POST("/playlists", playlistTransport.Create)
