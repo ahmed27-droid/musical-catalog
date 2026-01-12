@@ -20,7 +20,7 @@ func NewUserTransport(service services.UserService) *UserTransport {
 func (t *UserTransport) Create(c *gin.Context) {
 	var req models.CreateUser
 
-	if err := c.ShouldBindJSON(req); err != nil {
+	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
