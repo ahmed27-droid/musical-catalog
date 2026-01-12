@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"math"
 	"musical-catalog/internal/models"
 
 	"gorm.io/gorm"
@@ -56,12 +57,13 @@ func (r *gormAlbumRepository) List() ([]models.Album, error) {
 func (r *gormAlbumRepository) GetAverageRating(albumID uint) (float64, error) {
 	var avg float64
 
-	err:= r.db.
+	err := r.db.
 		Model(&models.Track{}).
 		Where("album_id = ?", albumID).
 		Select("COALESCE(AVG(rating), 0)").
 		Scan(&avg).Error
 
+	avg = math.Round(avg*100) / 100
 
 	return avg, err
 

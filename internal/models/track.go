@@ -6,7 +6,7 @@ type Track struct {
 	gorm.Model
 	Title    string `json:"title" gorm:"not null;size:100"`
 	Duration int    `json:"duration" gorm:"not null"`
-	Rating   int    `json:"rating" gorm:"not null"`
+	Rating   int    `json:"rating"`
 
 	AlbumID uint  `json:"album_id" gorm:"not null;index"`
 	Album   Album `json:"-" gorm:"foreignKey:AlbumID;constraint:OnDelete:CASCADE"`
