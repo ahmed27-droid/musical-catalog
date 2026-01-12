@@ -46,7 +46,7 @@ func (r *gormPlaylistRepository) AddTrack(playlistID uint, trackID uint) error {
 		return err
 	}
 
-	var track Track
+	var track models.Track
 	if err := r.db.First(&track, trackID).Error; err != nil {
 		return err
 	}
@@ -60,7 +60,7 @@ func (r *gormPlaylistRepository) DeleteTrack(playlistID uint, trackID uint) erro
 		return err
 	}
 
-	var track Track
+	var track models.Track
 	if err := r.db.First(&track, trackID).Error; err != nil {
 		return err
 	}

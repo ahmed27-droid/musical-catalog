@@ -14,26 +14,32 @@ func main() {
 
 	db := config.SetupDatabase()
 
-	db.AutoMigrate(&models.Artist{}, &models.Album{}, &models.User{}, &models.Playlist{})
+	db.AutoMigrate(&models.Artist{}, &models.Album{}, &models.User{}, &models.Playlist{}, &models.Track{}, &models.Review{})
 
 	artistRepo := repository.NewArtistRepository(db)
 	albumRepo := repository.NewAlbumRepository(db)
 	userRepo := repository.NewUserRepository(db)
 	playlistRepo := repository.NewPlaylistRepository(db)
+	trackRepo := repository.NewTrackRepository(db)
+	reviewRepo := repository.NewReviewRepository(db)
 
 	artistService := services.NewArtistService(artistRepo)
 	albumService := services.NewAlbumService(artistRepo, albumRepo)
 	userService := services.NewUserService(userRepo)
 	playlistService := services.NewPlaylistService(userRepo, playlistRepo, trackRepo)
+	trackService := services.NewTrackService(trackRepo)
+	reviewService := services.NewReviewService(reviewRepo)
 
 	artistTransport := transport.NewArtistTransport(artistService)
 	albumTransport := transport.NewAlbumTransport(albumService)
 	userTransport := transport.NewUserTransport(userService)
 	playlistTransport :=transport.NewPlaylistTransport(playlistService)
+	trackTransport := transport.NewTrackTransport(trackService)
+	reviewTransport := transport.NewReviewTransport(reviewService)
 
 
 	router := gin.Default()
-	transport.RegisterRoutes(router, artistTransport, albumTransport, userTransport, playlistTransport)
+	transport.RegisterRoutes(router, artistTransport, albumTransport, userTransport, playlistTransport, trackTransport, reviewTransport)
 	router.Run(":8080")
 
 }
