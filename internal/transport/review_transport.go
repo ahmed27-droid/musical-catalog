@@ -35,6 +35,9 @@ func (h *ReviewTransport) GetAll(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
+	if len(reviews) == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"message":"no review"})
+	}
 
 	c.JSON(http.StatusOK, reviews)
 }
@@ -69,5 +72,5 @@ func (h *ReviewTransport) Delete(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "review deleted"})
+	c.Status(http.StatusNoContent)
 }

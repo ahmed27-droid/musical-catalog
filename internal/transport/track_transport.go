@@ -92,7 +92,7 @@ func (h *TrackTransport) Delete(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message":"track delete"})
+	c.Status(http.StatusNoContent)
 }
 
 func (h *TrackTransport) GetAverage(c *gin.Context) {

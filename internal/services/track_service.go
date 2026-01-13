@@ -27,7 +27,7 @@ func (s *trackService) Create(req models.CreateTrackRequest) (*models.Track, err
 		Title:    req.Title,
 		Duration: req.Duration,
 		AlbumID:  req.AlbumID,
-		Rating: req.Rating,
+		Rating:   req.Rating,
 	}
 
 	if err := s.trackRepo.Create(track); err != nil {
@@ -69,7 +69,11 @@ func (s *trackService) Update(id uint, req models.UpdateTrackRequest) (*models.T
 }
 
 func (s *trackService) Delete(id uint) error {
-	return s.trackRepo.Delete(id)
+	track, err := s.trackRepo.GetByID(id)
+	if err != nil {
+		return err
+	}
+	return s.trackRepo.Delete(track.ID)
 }
 
 func (s *trackService) GetAverage(trackID uint) (float64, error) {
