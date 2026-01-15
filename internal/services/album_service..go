@@ -37,8 +37,8 @@ func (s *albumService) CreateAlbum(req models.AlbumCreateRequest) (*models.Album
 	}
 
 	album := models.Album{
-		Title: req.Title,
-		Year:  req.Year,
+		Title:    req.Title,
+		Year:     req.Year,
 		ArtistID: req.ArtistID,
 	}
 
@@ -69,7 +69,7 @@ func (s *albumService) UpdateAlbum(id uint, req models.AlbumUpdateRequest) (*mod
 
 	if req.ArtistID != nil {
 		if _, err := s.artistRepo.GetByID(*req.ArtistID); err != nil {
-			return nil , errors.New("artist not found")
+			return nil, errors.New("artist not found")
 		}
 		album.ArtistID = *req.ArtistID
 	}

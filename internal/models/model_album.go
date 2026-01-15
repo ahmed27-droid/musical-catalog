@@ -26,4 +26,3 @@ type AlbumUpdateRequest struct {
 	Title    *string `json:"title" binding:"omitempty,min=2,max=20"`
 	Year     *int    `json:"year" binding:"omitempty,gte=1950,lte=2025"`
 }
-

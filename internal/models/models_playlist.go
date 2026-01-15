@@ -4,9 +4,9 @@ import "gorm.io/gorm"
 
 type Playlist struct {
 	gorm.Model
-	Title  string  `json:"title" gorm:"not null;size:20"`
-	UserID uint    `json:"user_id" gorm:"not null;index"`
-	
+	Title  string `json:"title" gorm:"not null;size:20"`
+	UserID uint   `json:"user_id" gorm:"not null;index"`
+
 	User   *User   `json:"-" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 	Tracks []Track `json:"tracks" gorm:"many2many:playlist_tracks;constraint:OnDelete:CASCADE;"`
 }

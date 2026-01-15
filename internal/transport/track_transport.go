@@ -42,9 +42,9 @@ func (h *TrackTransport) Create(c *gin.Context) {
 }
 
 func (h *TrackTransport) GetByID(c *gin.Context) {
-	id, err:= strconv.Atoi(c.Param("id"))
-	if err != nil{
-		c.JSON(400, gin.H{"error":"invalid id"})
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(400, gin.H{"error": "invalid id"})
 		return
 	}
 
@@ -58,9 +58,9 @@ func (h *TrackTransport) GetByID(c *gin.Context) {
 }
 
 func (h *TrackTransport) Update(c *gin.Context) {
-	id, err:= strconv.Atoi(c.Param("id"))
-	if err != nil{
-		c.JSON(400, gin.H{"error":"invalid id"})
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(400, gin.H{"error": "invalid id"})
 		return
 	}
 
@@ -80,9 +80,9 @@ func (h *TrackTransport) Update(c *gin.Context) {
 }
 
 func (h *TrackTransport) Delete(c *gin.Context) {
-	id, err:= strconv.Atoi(c.Param("id"))
-	if err != nil{
-		c.JSON(400, gin.H{"error":"invalid id"})
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(400, gin.H{"error": "invalid id"})
 		return
 	}
 
@@ -95,9 +95,9 @@ func (h *TrackTransport) Delete(c *gin.Context) {
 }
 
 func (h *TrackTransport) GetAverage(c *gin.Context) {
-	id, err:= strconv.Atoi(c.Param("id"))
-	if err != nil{
-		c.JSON(400, gin.H{"error":"invalid id"})
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(400, gin.H{"error": "invalid id"})
 		return
 	}
 
@@ -112,4 +112,3 @@ func (h *TrackTransport) GetAverage(c *gin.Context) {
 		"average":  avg,
 	})
 }
-

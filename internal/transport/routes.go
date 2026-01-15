@@ -10,9 +10,9 @@ func RegisterRoutes(
 	playlistTransport *PlaylistTransport,
 	trackTransport *TrackTransport,
 	reviewTransport *ReviewTransport,
-	
-){
-	router.GET("/artists",artistTransport.ListArtists)
+
+) {
+	router.GET("/artists", artistTransport.ListArtists)
 	router.POST("/artists", artistTransport.Create)
 
 	router.GET("/artists/:id", artistTransport.GetArtistByID)
@@ -55,5 +55,8 @@ func RegisterRoutes(
 	router.POST("/reviews", reviewTransport.Create)
 	router.DELETE("/reviews/:id", reviewTransport.Delete)
 
+	router.GET("/intocode", func(ctx *gin.Context) {
+		ctx.String(200, "Hello Intocode")
+	})
 
 }

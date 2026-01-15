@@ -13,7 +13,7 @@ type AlbumTransport struct {
 	service services.AlbumService
 }
 
-func NewAlbumTransport(service services.AlbumService) *AlbumTransport{
+func NewAlbumTransport(service services.AlbumService) *AlbumTransport {
 	return &AlbumTransport{service: service}
 }
 
@@ -26,7 +26,6 @@ func (t *AlbumTransport) ListAlbums(c *gin.Context) {
 
 	c.JSON(http.StatusOK, albums)
 }
-
 
 func (t *AlbumTransport) CreateAlbum(c *gin.Context) {
 	var req models.AlbumCreateRequest
@@ -64,7 +63,7 @@ func (t *AlbumTransport) GetAlbumByID(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, album)
-} 
+}
 
 func (t *AlbumTransport) GetAlbumsAverageRating(c *gin.Context) {
 	idInt, err := strconv.Atoi(c.Param("id"))
@@ -82,7 +81,7 @@ func (t *AlbumTransport) GetAlbumsAverageRating(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"album_id": idInt,
+		"album_id":       idInt,
 		"average_rating": avg,
 	})
 
@@ -107,7 +106,7 @@ func (t *AlbumTransport) UpdateAlbum(c *gin.Context) {
 	}
 
 	album, err := t.service.UpdateAlbum(uint(idInt), req)
-	if  err != nil {
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
@@ -134,6 +133,5 @@ func (t *AlbumTransport) DeleteAlbum(c *gin.Context) {
 	}
 
 	c.Status(http.StatusNoContent)
-
 
 }

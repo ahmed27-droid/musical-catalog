@@ -27,7 +27,7 @@ func (s *trackService) Create(req models.CreateTrackRequest) (*models.Track, err
 		Title:    req.Title,
 		Duration: req.Duration,
 		AlbumID:  req.AlbumID,
-		Rating: req.Rating,
+		Rating:   req.Rating,
 	}
 
 	if err := s.trackRepo.Create(track); err != nil {

@@ -17,7 +17,7 @@ type PlaylistService interface {
 type playlistService struct {
 	userRepo     repository.UserRepository
 	playlistRepo repository.PlaylistRepository
-	trackRepo repository.TrackRepository
+	trackRepo    repository.TrackRepository
 }
 
 func NewPlaylistService(

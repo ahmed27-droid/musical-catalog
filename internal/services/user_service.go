@@ -60,11 +60,11 @@ func (s *userService) UpdateUser(id uint, req models.UpdateUser) (*models.User, 
 func (s *userService) DeleteUser(id uint) error {
 	_, err := s.userRepo.GetByID(id)
 	if err != nil {
-		return  err
+		return err
 	}
 	return s.userRepo.Delete(id)
 }
 
-func (s *userService) ListUser() ([]models.User, error){
+func (s *userService) ListUser() ([]models.User, error) {
 	return s.userRepo.List()
 }
