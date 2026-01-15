@@ -11,6 +11,7 @@ import (
 
 func SetupDatabase() *gorm.DB {
 	err := godotenv.Load(".env")
+
 	if err != nil {
 		panic(err)
 	}

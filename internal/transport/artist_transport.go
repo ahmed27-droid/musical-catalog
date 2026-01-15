@@ -39,7 +39,6 @@ func (t *ArtistTransport) Create(c *gin.Context) {
 
 func (t *ArtistTransport) ListArtists(c *gin.Context) {
 
-	
 	artists, err := t.service.ListArtist()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
